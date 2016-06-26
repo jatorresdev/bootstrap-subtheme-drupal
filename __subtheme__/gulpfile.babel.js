@@ -56,14 +56,13 @@ function less() {
     .pipe(gulp.dest(PATHS.dist + '/assets/css'));
 }
 
-
 // Combine JavaScript into one file
 // In production, the file is minified
 function javascript() {
   return gulp.src(PATHS.javascript)
     .pipe($.sourcemaps.init())
     .pipe($.babel())
-    .pipe($.concat('functions.js'))
+    .pipe($.concat('js.js'))
     .pipe($.if(PRODUCTION, $.uglify()
       .on('error', e => {
         console.log(e);

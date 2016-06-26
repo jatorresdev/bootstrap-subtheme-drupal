@@ -1,10 +1,7 @@
-# Your project's server will run on localhost:xxxx at this port
-PORT: 8000
-
 # Autoprefixer will make sure your CSS works with these browsers
 COMPATIBILITY:
   - "last 2 versions"
-  - "ie >= 9"
+  - "ie >= 8"
 
 # Gulp will reference these paths when it copies files
 PATHS:
@@ -15,8 +12,7 @@ PATHS:
     - "src/assets/{img,js}/*"
     - "!src/assets/{img,js,less}/**/*"
   javascript:
-    # Libraries requried by Foundation
-    - "bower_components/jquery/dist/jquery.js"
+    # Libraries requried
+    - "bower_components/bootstrap/dist/js/bootstrap.js"
     # Paths to your own project code are here
-    - "src/assets/js/functions.js"
     - "src/assets/js/**/*.js"
