@@ -31,4 +31,5 @@ stylesheets[all][] = 'build/css/style.css'
 ;; Scripts
 ;;;;;;;;;;;;;;;;;;;;;
 
+scripts[] = 'build/libs/bootstrap/dist/js/bootstrap.min.js'
 scripts[] = 'build/js/js.js'

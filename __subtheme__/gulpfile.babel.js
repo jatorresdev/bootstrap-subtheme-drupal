@@ -8,7 +8,9 @@ import yaml     from 'js-yaml';
 import fs       from 'fs';
 
 // Load all Gulp plugins into one variable
-const $ = plugins();
+const $ = plugins({
+  pattern: ['gulp-*', 'gulp.*', 'main-bower-files']
+});
 
 // Check for --production flag
 const PRODUCTION = !!(yargs.argv.production);
@@ -23,7 +25,7 @@ function loadConfig() {
 
 // Build the "build" folder by running all of the below tasks
 gulp.task('build',
-  gulp.series(clean, gulp.parallel(less, javascript, images, copy)));
+  gulp.series(clean, gulp.parallel(bower, less, javascript, images, copy)));
 
 // Watch for file changes
 gulp.task('default',
@@ -82,9 +84,25 @@ function images() {
     .pipe(gulp.dest(PATHS.dist + '/assets/img'));
 }
 
+function bower() {
+  return gulp.src($.mainBowerFiles({
+      "overrides": {
+        "bootstrap":  {
+          main: [
+            './dist/js/*' + $.if(PRODUCTION, '.min.js', '.js'),
+            './dist/css/*' + $.if(PRODUCTION, '.min.css', '*'),
+            './dist/fonts/*.*'
+          ]
+        }
+      }
+    }), {base: PATHS.bower})
+    .pipe(gulp.dest(PATHS.dist + '/libs'));
+}
+
 // Watch for changes to static assets, pages, Sass, and JavaScript
 function watch() {
   gulp.watch(PATHS.assets, copy);
+  gulp.watch(PATHS.bower, bower);
   gulp.watch('src/assets/scss/**/*.scss', gulp.series(less));
   gulp.watch('src/assets/js/**/*.js', gulp.series(javascript));
   gulp.watch('src/assets/img/**/*', gulp.series(images));

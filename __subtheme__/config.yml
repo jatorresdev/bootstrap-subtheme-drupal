@@ -11,8 +11,8 @@ PATHS:
   assets:
     - "src/assets/{img,js}/*"
     - "!src/assets/{img,js,less}/**/*"
+  # Path Bower components
+  bower: "bower_components"
   javascript:
-    # Libraries requried
-    - "bower_components/bootstrap/dist/js/bootstrap.js"
     # Paths to your own project code are here
     - "src/assets/js/**/*.js"
