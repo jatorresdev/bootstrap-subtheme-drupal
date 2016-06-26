@@ -1,0 +1,50 @@
+name = __subtheme__ theme
+description = Theme for site __subtheme__ based in Bootstrap Theme
+core = 7.x
+base theme = bootstrap
+
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Regions
+;;;;;;;;;;;;;;;;;;;;;
+
+regions[navigation]     = 'Navigation'
+regions[header]         = 'Top Bar'
+regions[highlighted]    = 'Highlighted'
+regions[help]           = 'Help'
+regions[content]        = 'Content'
+regions[sidebar_first]  = 'Primary'
+regions[sidebar_second] = 'Secondary'
+regions[footer]         = 'Footer'
+regions[page_top]       = 'Page top'
+regions[page_bottom]    = 'Page bottom'
+
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Stylesheets
+;;;;;;;;;;;;;;;;;;;;;
+
+stylesheets[all][] = 'build/css/style.css'
+
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Scripts
+;;;;;;;;;;;;;;;;;;;;;
+
+scripts[] = 'build/lib/bootstrap/js/affix.js'
+scripts[] = 'build/lib/bootstrap/js/alert.js'
+scripts[] = 'build/lib/bootstrap/js/button.js'
+scripts[] = 'build/lib/bootstrap/js/carousel.js'
+scripts[] = 'build/lib/bootstrap/js/collapse.js'
+scripts[] = 'build/lib/bootstrap/js/dropdown.js'
+scripts[] = 'build/lib/bootstrap/js/modal.js'
+scripts[] = 'build/lib/bootstrap/js/tooltip.js'
+scripts[] = 'build/lib/bootstrap/js/popover.js'
+scripts[] = 'build/lib/bootstrap/js/scrollspy.js'
+scripts[] = 'build/lib/bootstrap/js/tab.js'
+scripts[] = 'build/lib/bootstrap/js/transition.js'
+
+;;;;;;;;;;;;;;;;;;;;;
+;; JS Theme
+;;;;;;;;;;;;;;;;;;;;;
+scripts[] = 'build/js/functions.js'
