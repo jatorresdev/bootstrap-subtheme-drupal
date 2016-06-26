@@ -1,5 +1,5 @@
 name = __subtheme__ theme
-description = Theme for site __subtheme__ based in Bootstrap Theme
+description = Theme for site based in Bootstrap Theme
 core = 7.x
 base theme = bootstrap
 
