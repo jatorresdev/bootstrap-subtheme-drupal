@@ -103,7 +103,7 @@ function bower() {
 function watch() {
   gulp.watch(PATHS.assets, copy);
   gulp.watch(PATHS.bower, bower);
-  gulp.watch('src/assets/scss/**/*.scss', gulp.series(less));
+  gulp.watch('src/assets/less/**/*.less', gulp.series(less));
   gulp.watch('src/assets/js/**/*.js', gulp.series(javascript));
   gulp.watch('src/assets/img/**/*', gulp.series(images));
 }
