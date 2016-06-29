@@ -18,6 +18,14 @@ const PRODUCTION = !!(yargs.argv.production);
 // Load settings from settings.yml
 const {COMPATIBILITY, PATHS} = loadConfig();
 
+// Manage errors
+let errorHandler = function (errorObject, callback) {
+  $.notify.onError(errorObject.toString().split(': ').join(':\n')).apply(this, arguments);
+  if (typeof this.emit === 'function') {
+    this.emit('end');
+  }
+};
+
 function loadConfig() {
   let ymlFile = fs.readFileSync('config.yml', 'utf8');
   return yaml.load(ymlFile);
@@ -49,7 +57,9 @@ function copy() {
 function less() {
   return gulp.src('src/assets/less/style.less')
     .pipe($.sourcemaps.init())
-    .pipe($.less())
+    .pipe($.less()
+      .on('error', errorHandler)
+    )
     .pipe($.autoprefixer({
       browsers: COMPATIBILITY
     }))
@@ -66,9 +76,7 @@ function javascript() {
     .pipe($.babel())
     .pipe($.concat('js.js'))
     .pipe($.if(PRODUCTION, $.uglify()
-      .on('error', e => {
-        console.log(e);
-      })
+      .on('error', errorHandler)
     ))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
     .pipe(gulp.dest(PATHS.dist + '/assets/js'));
@@ -86,16 +94,16 @@ function images() {
 
 function bower() {
   return gulp.src($.mainBowerFiles({
-      "overrides": {
-        "bootstrap":  {
-          main: [
-            './dist/js/*' + $.if(PRODUCTION, '.min.js', '.js'),
-            './dist/css/*' + $.if(PRODUCTION, '.min.css', '*'),
-            './dist/fonts/*.*'
-          ]
-        }
+    "overrides": {
+      "bootstrap": {
+        main: [
+          './dist/js/*' + $.if(PRODUCTION, '.min.js', '.js'),
+          './dist/css/*' + $.if(PRODUCTION, '.min.css', '*'),
+          './dist/fonts/*.*'
+        ]
       }
-    }), {base: PATHS.bower})
+    }
+  }), {base: PATHS.bower})
     .pipe(gulp.dest(PATHS.dist + '/libs'));
 }
 
