@@ -1,0 +1,21 @@
+{
+  "name": "subtheme-sass-for-bootstrap",
+  "homepage": "https://github.com/jatorresdev/subtheme-for-bootstrap",
+  "authors": [
+    "Angel Torres <jatorresdev@gmail.com>"
+  ],
+  "description": "Subtheme for site based in Bootstrap Theme (Sass)",
+  "main": "gulpfile.babel.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "3.3.7"
+  }
+}
