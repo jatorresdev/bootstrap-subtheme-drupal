@@ -1,11 +1,11 @@
 'use strict';
 
-import plugins  from 'gulp-load-plugins';
-import yargs    from 'yargs';
-import gulp     from 'gulp';
-import rimraf   from 'rimraf';
-import yaml     from 'js-yaml';
-import fs       from 'fs';
+import plugins from "gulp-load-plugins";
+import yargs from "yargs";
+import gulp from "gulp";
+import rimraf from "rimraf";
+import yaml from "js-yaml";
+import fs from "fs";
 
 // Load all Gulp plugins into one variable
 const $ = plugins({
@@ -32,12 +32,10 @@ function loadConfig() {
 }
 
 // Build the "build" folder by running all of the below tasks
-gulp.task('build',
-  gulp.series(clean, gulp.parallel(bower, sass, javascript, images, copy)));
+gulp.task('build', gulp.series(clean, gulp.parallel(bower, sass, javascript, images, copy)));
 
 // Watch for file changes
-gulp.task('default',
-  gulp.series('build', watch));
+gulp.task('default', gulp.series('build', watch));
 
 // Delete the "dist" folder
 // This happens every time a build starts
@@ -97,8 +95,7 @@ function bower() {
     "overrides": {
       "bootstrap-sass": {
         main: [
-          './assets/javascripts/*' + $.if(PRODUCTION, '.min.js', '.js'),
-          './assets/css/*' + $.if(PRODUCTION, '.min.css', '*'),
+          './assets/javascripts/bootstrap' + $.if(PRODUCTION, '.min.js', '.js'),
           './assets/fonts/bootstrap/*.*'
         ]
       }
@@ -111,7 +108,7 @@ function bower() {
 function watch() {
   gulp.watch(PATHS.assets, copy);
   gulp.watch(PATHS.bower, bower);
-  gulp.watch('src/assets/sass/**/*.scss', gulp.series(sass));
+  gulp.watch('src/assets/scss/**/*.scss', gulp.series(sass));
   gulp.watch('src/assets/js/**/*.js', gulp.series(javascript));
   gulp.watch('src/assets/img/**/*', gulp.series(images));
 }

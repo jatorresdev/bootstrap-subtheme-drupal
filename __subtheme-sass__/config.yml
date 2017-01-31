@@ -10,7 +10,7 @@ PATHS:
   # Paths to static assets that aren't images, CSS, or JavaScript
   assets:
     - "src/assets/{img,js}/*"
-    - "!src/assets/{img,js,less}/**/*"
+    - "!src/assets/{img,js,sass}/**/*"
   # Path Bower components
   bower: "bower_components"
   javascript:
