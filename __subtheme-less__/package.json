@@ -1,7 +1,7 @@
 {
-  "name": "subtheme-for-bootstrap",
+  "name": "subtheme-less-for-bootstrap",
   "version": "1.0.0",
-  "description": "Subtheme for site based in Bootstrap Theme",
+  "description": "Subtheme for site based in Bootstrap Theme (Less)",
   "main": "gulpfile.babel.js",
   "scripts": {
     "start": "gulp",

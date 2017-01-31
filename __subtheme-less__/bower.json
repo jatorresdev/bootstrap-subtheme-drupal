@@ -1,10 +1,10 @@
 {
-  "name": "subtheme-for-bootstrap",
+  "name": "subtheme-less-for-bootstrap",
   "homepage": "https://github.com/jatorresdev/subtheme-for-bootstrap",
   "authors": [
     "Angel Torres <jatorresdev@gmail.com>"
   ],
-  "description": "Subtheme for site based in Bootstrap Theme",
+  "description": "Subtheme for site based in Bootstrap Theme (Less)",
   "main": "gulpfile.babel.js",
   "license": "MIT",
   "private": true,
