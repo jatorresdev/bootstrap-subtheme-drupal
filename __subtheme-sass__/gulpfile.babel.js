@@ -95,7 +95,7 @@ function bower() {
     "overrides": {
       "bootstrap-sass": {
         main: [
-          './assets/javascripts/bootstrap' + $.if(PRODUCTION, '.min.js', '.js'),
+          './assets/javascripts/bootstrap.min.js',
           './assets/fonts/bootstrap/*.*'
         ]
       }
