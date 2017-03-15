@@ -9,7 +9,7 @@ PATHS:
   dist: "build"
   # Paths to static assets that aren't images, CSS, or JavaScript
   assets:
-    - "src/assets/{img,js}/*"
+    - "src/assets/{img,js,font}/*"
     - "!src/assets/{img,js,less}/**/*"
   # Path Bower components
   bower: "bower_components"

@@ -97,8 +97,7 @@ function bower() {
     "overrides": {
       "bootstrap": {
         main: [
-          './dist/js/*' + $.if(PRODUCTION, '.min.js', '.js'),
-          './dist/css/*' + $.if(PRODUCTION, '.min.css', '*'),
+          './dist/js/*.min.js',
           './dist/fonts/*.*'
         ]
       }
