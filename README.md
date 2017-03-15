@@ -1,2 +1,2 @@
-# subtheme-for-bootstrap
-Subtheme for base theme bootstrap drupal 7.x-3.12. Available for SASS and LESS.
+# Sub-theme LESS or SASS for Drupal 7 based on Bootstrap Theme
+Sub-theme LESS or SASS for Drupal 7 based on Bootstrap Theme 7.x-3.12.
