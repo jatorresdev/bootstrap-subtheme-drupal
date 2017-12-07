@@ -1,0 +1,17 @@
+# Autoprefixer will make sure your CSS works with these browsers
+COMPATIBILITY:
+  - "last 2 versions"
+  - "ie >= 8"
+# Gulp will reference these paths when it copies files
+PATHS:
+  # Path to dist folder
+  dist: "build"
+  # Paths to static assets that aren't images, CSS, or JavaScript
+  assets:
+    - "src/assets/{images,js,fonts}/*"
+    - "!src/assets/{images,js,scss}/**/*"
+  # Path Bower components
+  bower: "bower_components"
+  javascript:
+    # Paths to your own project code are here
+    - "src/assets/js/**/*.js"

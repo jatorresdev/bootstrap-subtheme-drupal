@@ -1,22 +1,21 @@
 // @todo these should be their own CSS files and only included when
 // specific Drupal libraries are used.
-@import "component/alert";
-@import "component/ajax";
-@import "component/field";
-@import "component/file";
-@import "component/filter";
-@import "component/form";
-@import "component/icon";
-@import "component/navbar";
-@import "component/node";
-@import "component/panel";
-@import "component/progress-bar";
-@import "component/table-drag";
-@import "component/tabs";
-@import "component/toolbar";
-
+@import "overrides/component/alert";
+@import "overrides/component/ajax";
+@import "overrides/component/field";
+@import "overrides/component/file";
+@import "overrides/component/filter";
+@import "overrides/component/form";
+@import "overrides/component/icon";
+@import "overrides/component/navbar";
+@import "overrides/component/node";
+@import "overrides/component/panel";
+@import "overrides/component/progress-bar";
+@import "overrides/component/table-drag";
+@import "overrides/component/tabs";
+@import "overrides/component/toolbar";
 // jQuery UI style overrides.
-@import "jquery-ui/autocomplete";
+@import "overrides/jquery-ui/autocomplete";
 
 ol, ul {
   padding-left: 1.5em;
@@ -56,7 +55,6 @@ p:last-child,
     overflow: hidden;
   }
 }
-
 
 .help-block, .control-group .help-inline {
   color: $gray-light;
