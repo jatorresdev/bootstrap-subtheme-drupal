@@ -7,7 +7,6 @@
   "description": "Subtheme for site based in Bootstrap Theme (Sass)",
   "main": "gulpfile.babel.js",
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
