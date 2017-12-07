@@ -1,0 +1,30 @@
+{
+  "name": "__subtheme-less__",
+  "homepage": "https://github.com/jatorresdev/bootstrap-subtheme-drupal",
+  "description": "Subtheme for site based in Bootstrap Theme (Less)",
+  "main": "gulpfile.babel.js",
+  "keywords": [
+    "drupal8",
+    "bootstrap3",
+    "theme",
+    "subtheme",
+    "gulp",
+    "less",
+    "bower",
+    "npm"
+  ],
+  "authors": [
+    "Angel Torres <jatorresdev@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

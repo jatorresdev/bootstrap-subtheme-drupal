@@ -1,19 +1,14 @@
-global-styling:
-  css:
-    theme:
-      css/style.css: {}
-
-bootstrap-scripts:
+bootstrap:
+  version: 3.3.7
   js:
-    bootstrap/js/affix.js: {}
-    bootstrap/js/alert.js: {}
-    bootstrap/js/button.js: {}
-    bootstrap/js/carousel.js: {}
-    bootstrap/js/collapse.js: {}
-    bootstrap/js/dropdown.js: {}
-    bootstrap/js/modal.js: {}
-    bootstrap/js/tooltip.js: {}
-    bootstrap/js/popover.js: {}
-    bootstrap/js/scrollspy.js: {}
-    bootstrap/js/tab.js: {}
-    bootstrap/js/transition.js: {}
+    build/libs/bootstrap/dist/js/bootstrap.min.js: {}
+
+global:
+  css:
+    base:
+      build/assets/css/style.css: {}
+  js:
+    build/assets/js/js.js: {}
+  dependencies:
+    - core/jquery
+    - __subtheme-less__/bootstrap
