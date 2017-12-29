@@ -23,3 +23,5 @@ PATHS:
       - "source/assets/less/style.less"
   # Path Bower components
   bower: "bower_components"
+  DOMAIN:
+    proxy: "example.test"

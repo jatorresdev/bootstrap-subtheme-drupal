@@ -6,6 +6,7 @@ import gulp from "gulp";
 import rimraf from "rimraf";
 import yaml from "js-yaml";
 import fs from "fs";
+import browserSync from "browser-sync";
 
 // Load all Gulp plugins into one variable
 const $ = plugins({
@@ -16,7 +17,7 @@ const $ = plugins({
 const PRODUCTION = !!(yargs.argv.production);
 
 // Load settings from settings.yml
-const {COMPATIBILITY, PATHS} = loadConfig();
+const {COMPATIBILITY, PATHS, DOMAIN} = loadConfig();
 
 // Manage errors
 let errorHandler = function (errorObject, callback) {
@@ -35,7 +36,7 @@ function loadConfig() {
 gulp.task('build', gulp.series(clean, gulp.parallel(bower, scss, javascript, images, copy)));
 
 // Watch for file changes
-gulp.task('default', gulp.series('build', watch));
+gulp.task('default', gulp.series('build', gulp.parallel(serve, watch)));
 
 // Delete the "dist" folder
 // This happens every time a build starts
@@ -64,7 +65,8 @@ function scss() {
     }))
     .pipe($.if(PRODUCTION, $.cssnano()))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest(PATHS.dist.assets + '/css'));
+    .pipe(gulp.dest(PATHS.dist.assets + '/css'))
+    .pipe(browserSync.stream());
 }
 
 // Combine JavaScript into one file
@@ -91,6 +93,7 @@ function images() {
     .pipe(gulp.dest(PATHS.dist.assets + '/images'));
 }
 
+// Bower libraries
 function bower() {
   return gulp.src($.mainBowerFiles({
     "overrides": {
@@ -105,11 +108,24 @@ function bower() {
     .pipe(gulp.dest(PATHS.dist.libs));
 }
 
+// Deploy server local
+function serve() {
+  browserSync.init({
+    proxy: DOMAIN.proxy
+  });
+}
+
+// Refresh server
+function reload(done) {
+  browserSync.reload();
+  done();
+}
+
 // Watch for changes to static assets, pages, scss, and JavaScript
 function watch() {
   gulp.watch(PATHS.src.folders, copy);
   gulp.watch(PATHS.bower, bower);
   gulp.watch('source/assets/scss/**/*.scss', gulp.series(scss));
-  gulp.watch('source/assets/js/**/*.js', gulp.series(javascript));
-  gulp.watch('source/assets/images/**/*', gulp.series(images));
+  gulp.watch('source/assets/js/**/*.js', gulp.series(javascript, reload));
+  gulp.watch('source/assets/images/**/*', gulp.series(images, reload));
 }
