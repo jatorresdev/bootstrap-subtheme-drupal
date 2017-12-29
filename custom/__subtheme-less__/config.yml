@@ -2,16 +2,25 @@
 COMPATIBILITY:
   - "last 2 versions"
   - "ie >= 8"
+
 # Gulp will reference these paths when it copies files
 PATHS:
   # Path to dist folder
-  dist: "build"
-  # Paths to static assets that aren't images, CSS, or JavaScript
-  assets:
-    - "src/assets/{images,js,fonts}/*"
-    - "!src/assets/{images,js,less}/**/*"
+  dist:
+    root: "build"
+    assets: "build/assets"
+    libs: "build/libs"
+  src:
+    # Paths to static assets that aren't images, CSS, or JavaScript
+    folders:
+      - "source/assets/{images,js,fonts}/*"
+      - "!source/assets/{images,js,scss}/**/*"
+    images: "source/assets/images"
+    js:
+      # Paths to your own project code are here
+      - "source/assets/js/**/*.js"
+    scss:
+      mobile: "source/assets/scss/styles.scss"
+      desktop: "source/assets/scss/desktop-styles.scss"
   # Path Bower components
   bower: "bower_components"
-  javascript:
-    # Paths to your own project code are here
-    - "src/assets/js/**/*.js"
