@@ -14,13 +14,12 @@ PATHS:
     # Paths to static assets that aren't images, CSS, or JavaScript
     folders:
       - "source/assets/{images,js,fonts}/*"
-      - "!source/assets/{images,js,scss}/**/*"
+      - "!source/assets/{images,js,less}/**/*"
     images: "source/assets/images"
     js:
       # Paths to your own project code are here
       - "source/assets/js/**/*.js"
-    scss:
-      mobile: "source/assets/scss/styles.scss"
-      desktop: "source/assets/scss/desktop-styles.scss"
+    less:
+      - "source/assets/less/style.less"
   # Path Bower components
   bower: "bower_components"

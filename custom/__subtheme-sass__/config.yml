@@ -20,7 +20,6 @@ PATHS:
       # Paths to your own project code are here
       - "source/assets/js/**/*.js"
     scss:
-      mobile: "source/assets/scss/styles.scss"
-      desktop: "source/assets/scss/desktop-styles.scss"
+      - "source/assets/scss/style.scss"
   # Path Bower components
   bower: "bower_components"

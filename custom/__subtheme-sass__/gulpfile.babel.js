@@ -32,7 +32,7 @@ function loadConfig() {
 }
 
 // Build the "build" folder by running all of the below tasks
-gulp.task('build', gulp.series(clean, gulp.parallel(bower, scssMobile, scssDesktop, javascript, images, copy)));
+gulp.task('build', gulp.series(clean, gulp.parallel(bower, scss, javascript, images, copy)));
 
 // Watch for file changes
 gulp.task('default', gulp.series('build', watch));
@@ -53,22 +53,8 @@ function copy() {
 
 // Compile Scss into CSS
 // In production, the CSS is compressed
-function scssMobile() {
-  return gulp.src(PATHS.src.scss.mobile)
-    .pipe($.sourcemaps.init())
-    .pipe($.sass()
-      .on('error', errorHandler)
-    )
-    .pipe($.autoprefixer({
-      browsers: COMPATIBILITY
-    }))
-    .pipe($.if(PRODUCTION, $.cssnano()))
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest(PATHS.dist.assets + '/css'));
-}
-
-function scssDesktop() {
-  return gulp.src(PATHS.src.scss.desktop)
+function scss() {
+  return gulp.src(PATHS.src.scss)
     .pipe($.sourcemaps.init())
     .pipe($.sass()
       .on('error', errorHandler)
@@ -123,7 +109,7 @@ function bower() {
 function watch() {
   gulp.watch(PATHS.src.folders, copy);
   gulp.watch(PATHS.bower, bower);
-  gulp.watch('source/assets/scss/**/*.scss', gulp.series(scssMobile, scssDesktop));
+  gulp.watch('source/assets/scss/**/*.scss', gulp.series(scss));
   gulp.watch('source/assets/js/**/*.js', gulp.series(javascript));
   gulp.watch('source/assets/images/**/*', gulp.series(images));
 }
