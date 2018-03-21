@@ -10,7 +10,7 @@ import browserSync from "browser-sync";
 
 // Load all Gulp plugins into one variable
 const $ = plugins({
-  pattern: ['gulp-*', 'gulp.*', 'main-bower-files']
+  pattern: ['gulp-*', 'gulp.*', 'npmfiles']
 });
 
 // Check for --production flag
@@ -33,7 +33,7 @@ function loadConfig() {
 }
 
 // Build the "build" folder by running all of the below tasks
-gulp.task('build', gulp.series(clean, gulp.parallel(bower, less, javascript, images, copy)));
+gulp.task('build', gulp.series(clean, gulp.parallel(yarn, less, javascript, images, copy)));
 
 // Watch for file changes
 gulp.task('default', gulp.series('build', gulp.parallel(serve, watch)));
@@ -49,7 +49,7 @@ function clean(done) {
 // parsed separately
 function copy() {
   return gulp.src(PATHS.src.folders)
-    .pipe(gulp.dest(PATHS.dist.assets));
+      .pipe(gulp.dest(PATHS.dist.assets));
 }
 
 /**
@@ -58,56 +58,47 @@ function copy() {
  */
 function less() {
   return gulp.src(PATHS.src.less)
-    .pipe($.sourcemaps.init())
-    .pipe($.less()
-      .on('error', errorHandler)
-    )
-    .pipe($.autoprefixer({
-      browsers: COMPATIBILITY
-    }))
-    .pipe($.if(PRODUCTION, $.cssnano()))
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest(PATHS.dist.assets + '/css'))
-    .pipe(browserSync.stream());
+      .pipe($.sourcemaps.init())
+      .pipe($.less()
+          .on('error', errorHandler)
+      )
+      .pipe($.autoprefixer({
+        browsers: COMPATIBILITY
+      }))
+      .pipe($.if(PRODUCTION, $.cssnano()))
+      .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+      .pipe(gulp.dest(PATHS.dist.assets + '/css'))
+      .pipe(browserSync.stream());
 }
 
 // Combine JavaScript into one file
 // In production, the file is minified
 function javascript() {
   return gulp.src(PATHS.src.js)
-    .pipe($.sourcemaps.init())
-    .pipe($.babel())
-    .pipe($.concat('js.js'))
-    .pipe($.if(PRODUCTION, $.uglify()
-      .on('error', errorHandler)
-    ))
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest(PATHS.dist.assets + '/js'));
+      .pipe($.sourcemaps.init())
+      .pipe($.babel())
+      .pipe($.concat('js.js'))
+      .pipe($.if(PRODUCTION, $.uglify()
+          .on('error', errorHandler)
+      ))
+      .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+      .pipe(gulp.dest(PATHS.dist.assets + '/js'));
 }
 
 // Copy images to the "dist" folder
 // In production, the images are compressed
 function images() {
   return gulp.src(PATHS.src.images + '/**/*')
-    .pipe($.if(PRODUCTION, $.imagemin({
-      progressive: true
-    })))
-    .pipe(gulp.dest(PATHS.dist.assets + '/images'));
+      .pipe($.if(PRODUCTION, $.imagemin({
+        progressive: true
+      })))
+      .pipe(gulp.dest(PATHS.dist.assets + '/images'));
 }
 
-// Bower libraries
-function bower() {
-  return gulp.src($.mainBowerFiles({
-    "overrides": {
-      "bootstrap": {
-        main: [
-          './dist/js/bootstrap.min.js',
-          './dist/fonts/bootstrap/*.*'
-        ]
-      }
-    }
-  }), {base: PATHS.bower})
-    .pipe(gulp.dest(PATHS.dist.libs));
+// Yarn libraries prod
+function yarn() {
+  return gulp.src($.npmfiles(), {base: PATHS.node_modules})
+      .pipe(gulp.dest(PATHS.dist.libs));
 }
 
 // Deploy server local
@@ -126,7 +117,7 @@ function reload(done) {
 // Watch for changes to static assets, pages, scss, and JavaScript
 function watch() {
   gulp.watch(PATHS.src.folders, copy);
-  gulp.watch(PATHS.bower, bower);
+  gulp.watch(PATHS.node_modules, yarn);
   gulp.watch('source/assets/less/**/*.less', gulp.series(less));
   gulp.watch('source/assets/js/**/*.js', gulp.series(javascript, reload));
   gulp.watch('source/assets/images/**/*', gulp.series(images, reload));

@@ -21,7 +21,7 @@ PATHS:
       - "source/assets/js/**/*.js"
     less:
       - "source/assets/less/style.less"
-  # Path Bower components
-  bower: "bower_components"
-  DOMAIN:
-    proxy: "example.test"
+  # Path node modules
+  node_modules: "node_modules"
+DOMAIN:
+  proxy: "example.test"

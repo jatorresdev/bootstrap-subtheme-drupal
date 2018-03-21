@@ -21,7 +21,7 @@ PATHS:
       - "source/assets/js/**/*.js"
     scss:
       - "source/assets/scss/style.scss"
-  # Path Bower components
-  bower: "bower_components"
+  # Path node modules
+  node_modules: "node_modules"
 DOMAIN:
   proxy: "example.test"
